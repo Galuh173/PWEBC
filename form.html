@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+<style>
+</style>
+<script>
+$(document).ready(function() {      
+    $('.error').hide();   //menyembunyikan label error
+    $('.submit').click(function(event){    //event ketika tombol pada class css dengan nama submit di klik 
+        var data=$('.infobox').val();     //membaca isi text box pada class css dengan nama infobox
+        if(validate_date(data))     //menentukan kondisi data yang divalidasi benar atau salah
+        {       
+            $('.error').hide();     //jika kondisi benar maka label error akan disembunyikan
+        }     
+        else     
+        {       
+            $('.error').show();       //jika kondisi tidak memenuhi maka label error akan dimunculkan
+            event.preventDefault();     //membatalkan event submit
+        }   
+    }); 
+}); 
+ 
+function validate_date(date) //fungsi untuk memvalidasi  data (tanggal) yang diinput
+{   
+    var pattern= new RegExp(/\b\d{1,2}[\/-]\d{1,2}[\/-]\d{4}\b/);    // persyaratan data (tanggal) dengan pola dd/mm/yyy
+    
+    return pattern.test(date); }  //menguji kecocokan string dengan persyaratan, akan mengembalikan nilai true jika menemukan kecocokan dan false jika tidak menemukan kecocokan
+</script>
+</head> 
+<body>
+    <form id="signup" method="post" action="">     
+        <div><span class="label">Enter Date of Birth </span>
+                <input type="text"  class="infobox" name="dob" />
+                    <span class="error"> Invalid Date. Correct format is dd/mm/yyyy 
+        </span></div>    
+                <input class="submit" type="submit" value="Submit"> </form>
+
+</style>
+</body>
+</html>
